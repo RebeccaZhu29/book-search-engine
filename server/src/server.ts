@@ -1,5 +1,5 @@
 import express from 'express';
-import path from 'node:path';
+import path, { dirname } from 'node:path';
 import type { Request, Response } from 'express';
 // Import the ApolloServer class
 import {
@@ -37,6 +37,7 @@ const startApolloServer = async () => {
   ));
 
   // if (process.env.NODE_ENV === 'production') {
+  const __dirname = dirname(__filename);
   app.use(express.static(path.join(__dirname, '../client/dist')));
 
   app.get('*', (_req: Request, res: Response) => {
